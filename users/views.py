@@ -31,7 +31,7 @@ def user_register(request):
                     return redirect('login')
     else:
         form = UserRegistrationForm()
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 
 
@@ -59,7 +59,7 @@ def Profile_(request, owner_id, product_id):
                     profile = x
                     break
 
-            return render(request, 'users/profile.html', { 'product_id': product_id, 'owner_id': owner_id, 'profile' : profile, 'logged_in' : request.user  })
+            return render(request, 'profile.html', { 'product_id': product_id, 'owner_id': owner_id, 'profile' : profile, 'logged_in' : request.user  })
 
     
     obj = User.objects.get(id = owner_id)
@@ -70,7 +70,7 @@ def Profile_(request, owner_id, product_id):
             profile = x
             break
     print(profile)       
-    return render(request, 'users/profile.html', { 'product_id': product_id, 'owner_id': owner_id, 'profile' : profile, 'u_form': u_form, 'p_form': p_form })  
+    return render(request, 'profile.html', { 'product_id': product_id, 'owner_id': owner_id, 'profile' : profile, 'u_form': u_form, 'p_form': p_form })  
 
 
 
@@ -81,7 +81,7 @@ def transactions(request, product_id = "-1"):
     date_of_transaction = datetime.date.today()
 
     if product_id == "-1":
-        return render(request, 'users/transaction.html', { 'transaxns': transaxns, 'date_of_transaction': date_of_transaction }) 
+        return render(request, 'transaction.html', { 'transaxns': transaxns, 'date_of_transaction': date_of_transaction }) 
 
     product = Product.objects.get(id = product_id)
     user = User.objects.get(id = request.user.id)
@@ -123,7 +123,7 @@ def make_appointment(request, product_id):
     
 
     form = AppointmentForm()    
-    return render(request, 'users/appointmentform.html', { 'form': form} )
+    return render(request, 'appointmentform.html', { 'form': form} )
 
 @login_required
 def manage_appointments(request, flag, appointment_id):
@@ -134,7 +134,7 @@ def manage_appointments(request, flag, appointment_id):
 
     if flag == 'frombase':
         print(flag)
-        return render(request, 'users/appointments.html', context)
+        return render(request, 'appointments.html', context)
 
     #print("APPOINTMENT ID is", appointment_id)
     appointment = Appointments.objects.get(id = appointment_id)
@@ -146,7 +146,7 @@ def manage_appointments(request, flag, appointment_id):
         appointment.delete() 
 
     
-    return render(request, 'users/appointments.html', context)
+    return render(request, 'appointments.html', context)
 
 
         

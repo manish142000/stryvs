@@ -57,15 +57,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'stryvs.urls'
 
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-        '/home/manish/Desktop/intern-task/stryvs/stryvs/templates', 
-        '/home/manish/Desktop/intern-task/stryvs/users/templates',
-        '/home/manish/Desktop/intern-task/stryvs/store/templates',
+            os.path.join(BASE_DIR, 'users/templates/'),
+            os.path.join(BASE_DIR, 'stryvs/templates/'),
+            os.path.join(BASE_DIR, 'store/templates/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

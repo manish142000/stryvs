@@ -30,7 +30,7 @@ def product_register(request):
         print('Post nahi ho rha')
         form = ProductRegistrationForm()
 
-    return render(request, 'store/product_register.html', {'form': form})
+    return render(request, 'product_register.html', {'form': form})
 
 
 def store(request, id, transaction, action):
@@ -63,14 +63,14 @@ def store(request, id, transaction, action):
                 'products' : Product.objects.all()
             }
 
-    return render(request, 'store/store.html', products)
+    return render(request, 'store.html', products)
 
 
 @login_required
 def details(request, product_id=1, action="Buy"):
     product = Product.objects.get(id=product_id)
     owner_id = product.owner.id
-    return render(request, 'store/product_details.html', {'product': product, 'action': action, 'owner_id': owner_id})
+    return render(request, 'product_details.html', {'product': product, 'action': action, 'owner_id': owner_id})
 
 
 @login_required
@@ -91,7 +91,7 @@ def Rent(request, product_id):
     else:
         form = ProductRentingForm()
     
-    return render(request, 'store/ProductRent.html', {'form': form})
+    return render(request, 'ProductRent.html', {'form': form})
 
         
 
@@ -108,4 +108,4 @@ def UpdateProduct(request, product_id, action):
     else:
         form = ProductUpdateForm()
 
-    return render(request, 'store/product_update.html', { 'form' : form })
+    return render(request, 'product_update.html', { 'form' : form })
