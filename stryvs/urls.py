@@ -27,9 +27,9 @@ from store import views as store_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name="login"),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name="login"),
     path('register/', user_views.user_register, name="register"),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name="logout"),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name="logout"),
     path('product-register/', store_views.product_register, name="product-register"),
     path('store?<int:id>&<str:transaction>&<str:action>/', store_views.store, name = "store"),
     path('details?<int:product_id>&<str:action>/', store_views.details, name = "product-details"),
