@@ -1,0 +1,39 @@
+{% extends 'stryvs/base.html' %} {% block content %}
+
+<div class="container">
+  <div id="demo" class="carousel slide" data-ride="carousel"> 
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>  
+    {% for product in products %}
+        {% if not product.is_rented %}
+          <div style="display: flex; justify-content: center; padding: 4%;">
+            <div class="card" >
+              <img style = "height: 500px; width: 500px;" src="{{ product.image.url }}" class="" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                {% if product.owner.id != user.id %}
+                  {% if product.want_to_sell %}
+                    <p class="card-text">Cost - {{ product.cost }}</p>
+                    <a href="{% url 'product-details' product.id 'Buy' %}" class="btn btn-outline-dark">Buy</a>
+                  {% endif %}
+                  {% if product.want_to_rent %}
+                    <p class="card-text">Rent - {{ product.rent_per_month }}</p>
+                    <a href="{% url 'product-details' product.id 'Rent' %}" class="btn btn-outline-dark">Rent</a>
+                  {% endif %}
+                    <a href="{% url 'profile' product.owner.id product.id %}" class="btn btn-outline-dark">Contact Owner</a>
+                {% else %} 
+                  <a href="{% url 'product-update' product.id 'None' %}" class="btn btn-outline-dark">Update your Product</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

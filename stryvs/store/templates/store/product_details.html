@@ -1,0 +1,69 @@
+{% extends 'stryvs/base.html' %} {% block content %}
+
+<div
+  class="card"
+  style="
+    text-align: center;
+    justify-content: center;
+    width: 10%;
+    display: inline;
+  "
+>
+  <img
+    style="height: 800px; width: 800px; margin-left: 28%"
+    src="{{ product.image.url }}"
+    class="card-img-top"
+    alt="..."
+  />
+  <div class="card-body" style="margin-top: 0">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <p class="card-text">Cost of product is: Rs. {{ product.cost }}</p>
+    <p class="card-text">Available since {{ product.date_posted }}</p>
+    
+    {% if product.want_to_rent %} 
+      <p class="card-text">Available for Rent.</p>
+      <p class="card-text">Rent per month is: {{ product.rent_per_month }}</p>
+    {% else %}
+      <p class="card-text">NOT Available for Rent.</p>
+    {% endif %}
+    
+    {% if owner_id != user.id %}
+      <button class="btn btn-outline-dark"> <a href="{% url 'profile' product.owner.id product.id %}">Contact Owner</a></button>
+    {% endif %}
+
+    {% if action == "Buy" %}
+      {% if product.want_to_sell and owner_id != user.id %}
+        <button
+          id="Buy"
+          style="color: aliceblue; border-radius: 10%"
+          class="btn btn-outline-dark"
+        >
+          <a
+            style="text-decoration: none"
+            href="{% url 'store' product.id 'True' 'Buy' %}"
+            >Proceed to Buy</a
+          >
+        </button>
+      {% endif %}
+      <a class = "btn btn-outline-dark" href="{% url 'make-appointments' product.id %}">Make an appointment with Owner</a>
+    {% else %}
+      {% if product.want_to_rent and owner_id != user.id %}
+        <button
+          id="Rent"
+          style="color: aliceblue; border-radius: 10%"
+          class="btn btn-outline-dark"
+        >
+          <a
+            style="text-decoration: none"
+            href="{% url 'Rent' product.id %}"
+            >Proceed to Rent</a
+          >
+        </button>
+      {% endif %}
+      <a class = "btn btn-outline-dark" href="{% url 'make-appointments' product.id %}">Make an appointment with Owner</a>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

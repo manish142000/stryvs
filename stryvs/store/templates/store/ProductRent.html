@@ -1,0 +1,14 @@
+{% extends 'stryvs/base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %} 
+
+<h1>Enter Renting Details ( Tenure in Months )</h1>
+<div class="content-section" style="height: 800px; width: 800px; display: flex; justify-content: center;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock content %}

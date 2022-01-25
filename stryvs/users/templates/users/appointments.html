@@ -1,0 +1,26 @@
+{% extends 'stryvs/base.html' %} 
+{% block content %}
+    {% for appointment in appointments %} 
+        <div style="display: flex; justify-content: center;">
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <div class="card" style="width: 16rem;">
+                <img src='{{ appointment.product.image.url }}' class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ appointment.product.name }} in Negotiation</h5>
+                    <p class="card-text">Cost of product {{ appointment.product.cost }}</p>
+                    <p class="card-text">Owner of Product is {{ appointment.product.owner.username }}</p>
+                    <p class="card-text">Appointment scheduled on  {{ appointment.appointment_date }} at {{ appointment.appointment_time }}</p>
+                    {% if not appointment.status and appointment.appointment_maker.id != request.user.id %} 
+                        <a href="{% url 'manage-appointments' '-1' appointment.id %}" class="btn btn-primary">Confirm</a>
+                    {% elif appointment.status %} 
+                         <p class="card-text">Appointment Confirmed.</p>
+                    {% else %} 
+                        <p class="card-text">Appointment Over/Deleted.</p>
+                    {% endif %} 
+                    <a href="{% url 'manage-appointments' '-2' appointment.id %}" class="btn btn-primary">Delete/Cancel</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

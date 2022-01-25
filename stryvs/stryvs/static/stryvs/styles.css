@@ -1,0 +1,18 @@
+.navBar {
+  display: flex;
+  background-color: antiquewhite;
+  justify-content: space-around;
+  align-items: center;
+}
+.navList {
+  list-style-type: none;
+  margin-left: 80%;
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: rgb(54, 5, 5);
+}
+a:hover {
+  color: rgb(231, 163, 75);
+}

@@ -1,0 +1,12 @@
+{% extends "stryvs/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    
+<h2>You have been Logged Out</h2>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        <button type="button" class="btn btn-outline-info"><a style="color: black; text-decoration: none;" href="{% url 'login' %}">Log in Again</a></button>
+    </small>
+</div>
+   
+{% endblock content %}

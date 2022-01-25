@@ -1,0 +1,18 @@
+{% extends 'stryvs/base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+<h1 style="text-align: center;">Fill the details of The Product</h1>
+<div class="content-section" style="height: 800px; width: 800px; display: flex; justify-content: center;">  
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- <fieldset class="form-group">
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="btn btn-outline-dark" type="submit" value="ok">Sell</button>
+            </div>
+        </fieldset> -->
+        {{ form|crispy }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}

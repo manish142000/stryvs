@@ -1,0 +1,13 @@
+{% extends 'stryvs/base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+<h1>Fill Appointment Details</h1><br><br>
+<div class="content-section">
+    <form method="POST" enctype="multipart/form-data" style="height: 800px; width: 800px; display: flex; justify-content: center;">
+        {% csrf_token %}
+        
+        {{ form|crispy }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}

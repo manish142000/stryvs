@@ -1,0 +1,26 @@
+{% extends 'stryvs/base.html' %} 
+{% block content %}
+    {% for trxn in transaxns %} 
+        <div style="display: flex; justify-content: center;">
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <div class="card" style="width: 16rem;">
+                <img src='{{ trxn.product.image.url }}' class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Name of the product - {{ trxn.product.name }}</h5>
+                    <p class="card-text">Product id - {{ trxn.product.id }}</p>
+                    <p class="card-text">About - {{ trxn.product.description }}</p>
+                    <p class="card-text">cost of product is - {{ trxn.product.cost }}</p>
+                    <p class="card-text">Transaction made on {{ date_of_transaction }}</p>
+                    <p class="card-text">Owner of product was {{ trxn.product.owner.username }}</p>
+                    {% if trxn.product.is_rented %}
+                        <p class="card-text">The product was Rented</p>
+                    {% else %}
+                        <p class="card-text">The product was Sold</p>
+                    {% endif %}
+                    <a href="#" class="btn btn-primary"></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
