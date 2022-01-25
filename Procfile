@@ -1,1 +1,1 @@
-web: gunicorn stryvs.wsgi
+web: gunicorn stryvs.wsgi --log-file -
