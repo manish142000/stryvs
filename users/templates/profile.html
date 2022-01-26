@@ -4,20 +4,24 @@
 <div class="content-section d-flex justify-content-center">
     <div class="media">
         <img style="border-radius: 50%;" class="rounded-circle account-img" src="{{ profile.image.url }}">
+        <br><br><br><br>
         <div class="media-body">
             <h2 class="account-heading">Name : {{ profile.user.username }}</h2>
             <p >email id: {{ profile.user.email }}</p>
             <p >Phone no. {{ profile.phone }}</p>
             <p >Address: {{ profile.address }}</p>
         </div>
-        {% if request.user.id != profile.user.id %}
+        {% if request.user.id != owner_id %}
         <a class = "btn btn-outline-dark" href="{% url 'make-appointments' product_id %}">Make an appointment with Owner</a>
         {% endif %}
     </div>
 
-    {% if profile.user.id == request.user.id %}
+    {% if owner_id == request.user.id %}
+        <h1>Update Your Profile here!</h1>
+        <br><br>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <br><br>
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Profile Info</legend>
                 {{ u_form|crispy }}

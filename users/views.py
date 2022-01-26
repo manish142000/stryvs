@@ -62,6 +62,8 @@ def Profile_(request, owner_id, product_id):
             return render(request, 'profile.html', { 'product_id': product_id, 'owner_id': owner_id, 'profile' : profile, 'logged_in' : request.user  })
 
     
+    u_form = UserUpdateForm() 
+    p_form = ProfileUpdateForm() 
     obj = User.objects.get(id = owner_id)
     print(obj.username)
     profile = None
